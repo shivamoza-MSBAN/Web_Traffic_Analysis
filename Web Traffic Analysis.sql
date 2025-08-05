@@ -1,8 +1,8 @@
 -- Role: eCommerce Database Analyst
 
 -- Web Traffic Analysis
--- Help CEO Cindy Sharp (CEO) to find where is the traffic coming from
--- Data Request Date: '2012-04-12'
+-- Analyze traffic sources to determine where website sessions are originating.
+-- Data Request Date: 2012-04-12
 SELECT 	utm_source,
 		utm_campaign,
         http_referer,
@@ -14,8 +14,8 @@ GROUP BY utm_source,
 		 http_referer
 ORDER BY sessions DESC;
 
--- Finding conversion rate for gsearch nonbrand campaigns
--- Data Request Date: '2012-04-14' 
+-- Calculate the conversion rate (CVR) for the Gsearch non-brand campaign.
+-- Data Request Date: 2012-04-14
 SELECT 	utm_source,
 		utm_campaign,
         COUNT(DISTINCT w.website_session_id) AS sessions,
@@ -31,8 +31,8 @@ GROUP BY utm_source,
 		utm_campaign
 ORDER BY sessions DESC;
 
--- Tom (Marketing Director) needs gsearch nonbrand trended session volume by week after bidding down gsearch nonbrand
--- Data Request Date: '2012-05-10' 
+-- Analyze weekly session trends for the Gsearch non-brand campaign following a bid reduction.
+-- Data Request Date: 2012-05-10
 SELECT	WEEK(created_at) AS wk,
 		MIN(DATE(created_at)) AS week_start_date,
 		COUNT(DISTINCT website_session_id) AS sessions
@@ -42,8 +42,8 @@ AND		utm_source = 'gsearch'
 AND		utm_campaign = 'nonbrand'
 GROUP BY 1;
 
--- Tom requires CVR from session to order by device type for optimize bidding by segments
--- Data Request Date: '2012-05-11' 
+-- Determine the CVR from session to order by device type to optimize bidding by segment.
+-- Data Request Date: 2012-05-11
 SELECT 	w.device_type,
 		COUNT(w.website_session_id) AS sessions,
         COUNT(o.order_id) AS orders,
@@ -56,9 +56,8 @@ AND		utm_source = 'gsearch'
 AND		utm_campaign = 'nonbrand'
 GROUP BY 1;
 
-/*After bidding up the desktop segment, Tom wants to see the results for 
-both desktop and mobile to see the impact of high bids
-between 15th Apirl, 2012 and 6th June, 2012 */
+/* Evaluate the impact of increased desktop bids 
+   by comparing desktop and mobile session trends between April 15, 2012, and June 6, 2012. */
 
 SELECT  -- WEEK(created_at),
 		MIN(DATE(created_at)) AS week_start_date,
