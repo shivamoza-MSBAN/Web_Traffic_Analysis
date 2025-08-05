@@ -1,6 +1,3 @@
-# Web_Traffic_Analysis
-As an eCommerce Database Analyst, I evaluated historical web traffic and conversion data to help Maven Fuzzy Factory optimize marketing spend.
-
 # Web Traffic Analysis – SQL & Excel Dashboard
 
 ## 📌 Project Overview
